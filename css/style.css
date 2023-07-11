@@ -1,13 +1,16 @@
 .board {
   width: 160px;
   height: 160px;
-  border: 20px solid;
+  border: 20px solid #55cdef;
 }
 
 .squate {
   float: left;
   width: 80px;
   height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .black {
@@ -16,4 +19,9 @@
 
 .white {
   background-color: #eee;
+}
+
+.figure {
+  font-size: 60px;
+  cursor: pointer;
 }
