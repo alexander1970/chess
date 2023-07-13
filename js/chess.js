@@ -36,7 +36,7 @@ function setDroppable() {
 
 function moveFigure(frCoord, toCoord) {
   console.log('move from ' + frCoord + ' to ' + toCoord);
-  figure = map[frCoord];
+  let figure = map[frCoord];
   showFigureAt(frCoord, '1');
   showFigureAt(toCoord, figure);
 };
