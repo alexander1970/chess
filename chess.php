@@ -1,0 +1,6 @@
+<?php
+
+if (isset($_GET['moveFigure']))
+  echo 'rnbqkbnrpppppppp1111111111111111111111111111111PPPPPPPP1RNBQKBNR';
+else
+  echo 'rnbqkbnrpppppppp11111111111111111111111111111111PPPPPPPPRNBQKBNR';
