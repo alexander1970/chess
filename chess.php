@@ -1,8 +1,10 @@
 <?php
 
 session_start();
-if (strlen($_SESSION['map']) != 64)
+if (isset($_GET['newFigures'])) {
   $_SESSION['map'] = 'rnbqkbnrpppppppp11111111111111111111111111111111PPPPPPPPRNBQKBNR';
+  echo $_SESSION['map'];
+}
 
 if (isset($_GET['getFigures']))
   echo $_SESSION['map'];

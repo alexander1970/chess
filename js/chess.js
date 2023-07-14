@@ -2,16 +2,24 @@ let map;
 let divSquare = '<div id="s$coord" class="square $color"></div>';
 let divFigure = '<div id="s$coord" class="figure">$figure</div>';
 let isDragging = false;
+let isFlipped = false;
 
 $(function () {
   start();
-  setInterval('showFiguresPHP()', 3000);
+  $('.buttonNew').click(newFiguresPHP);
+  $('.buttonFlip').click(flipBoard);
+  setInterval('showFiguresPHP()', 1000);
 });
 
 function start() {
   map = new Array(64);
   addSquares();
   showFiguresPHP();
+}
+
+function flipBoard() {
+  isFlipped = !isFlipped;
+  start();
 }
 
 function setDraggable() {
@@ -46,7 +54,7 @@ function addSquares() {
   $('.board').html('');
   for (let coord = 0; coord < 64; coord++)
     $('.board').append(divSquare
-      .replace('$coord', coord)
+      .replace('$coord', isFlipped ? 63 - coord : coord)
       .replace('$color',
         isBlackSquareAt(coord) ? 'black' : 'white'));
   setDroppable();
@@ -87,6 +95,10 @@ function getChessSymbol(figure) {
 
 function isBlackSquareAt(coord) {
   return (coord % 8 + Math.floor(coord / 8)) % 2;
+}
+
+function newFiguresPHP() {
+  $.get('chess.php?newFigures', showFigures);
 }
 
 function moveFigurePHP(frCoord, toCoord) {
