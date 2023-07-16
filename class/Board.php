@@ -23,10 +23,27 @@ class Board
   function moveFigures($frCoord, $toCoord)
   {
     $figures = $this->storage->load();
-    $figure = $figures[$frCoord];
+    $frFigure = $figures[$frCoord];
+    $toFigure = $figures[$toCoord];
+    if (!$this->canMove($frFigure, $toFigure)) return $figures;
     $figures[$frCoord] = '1';
-    $figures[$toCoord] = $figure;
+    $figures[$toCoord] = $frFigure;
     $this->storage->save($figures);
     return $this->storage->load();
+  }
+
+  function canMove($frFigure, $toFigure)
+  {
+    if (strpos('Kk', $toFigure) !== false) return false;
+    $frColor = $this->getFigureColor($frFigure);
+    $toColor = $this->getFigureColor($toFigure);
+    return $frColor !== $toColor;
+  }
+
+  function getFigureColor($figure)
+  {
+    if (strpos('PRNBQK', $figure) !== false) return  'white';
+    if (strpos('qkbnrp', $figure) !== false) return  'black';
+    return 'empty';
   }
 }
