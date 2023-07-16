@@ -2,7 +2,7 @@
 
 class SessionStorage implements Storage
 {
-  public $name;
+  var $name;
 
   function __construct($name)
   {
