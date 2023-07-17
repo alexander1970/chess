@@ -1,10 +1,12 @@
 <?php
 
 include 'class/Storage.php';
+include 'class/FileStorage.php';
 include 'class/SessionStorage.php';
 include 'class/Board.php';
 
-$storage = new SessionStorage('map');
+$storage = new FileStorage('figures.txt');
+// $storage = new SessionStorage('map');
 $board = new Board($storage);
 
 if (isset($_GET['newFigures']))
